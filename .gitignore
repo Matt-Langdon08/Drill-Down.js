@@ -1,0 +1,8 @@
+# Output directories
+dist
+
+#node_modules
+node_modules
+
+#miscellaneous
+package-lock.json
