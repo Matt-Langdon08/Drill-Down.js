@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Electronics",
+    "expanded": false,
+    "children": [
+      { "name": "Laptops" },
+      { "name": "Phones" },
+      { "name": "Tablets" }
+    ]
+  },
+  {
+    "name": "Clothing",
+    "expanded": false,
+    "children": [
+      { "name": "Shirts" },
+      { "name": "Pants" },
+      { "name": "Shoes" }
+    ]
+  },
+  {
+    "name": "Books",
+    "expanded": false,
+    "children": [
+      { "name": "Fiction" },
+      { "name": "Non-fiction" },
+      { "name": "Textbooks" }
+    ]
+  }
+]

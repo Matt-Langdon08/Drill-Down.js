@@ -3,10 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drill Down</title>
-    <script type="module" src="./src/index.ts"></script>
+    <title>DrillDown Table - Complete Examples</title>
+    <link rel="stylesheet" href="styles/examples.css">
 </head>
 <body>
-    <drill-down-table></drill-down-table>
+    <h1>DrillDown Table Component - Complete Examples</h1>
+
+    <h2>1. JavaScript Builder Pattern</h2>
+    <div id="js-builder-container"></div>
+
+    <h2>2. Web Component with HTML Attributes</h2>
+    <drill-down-table
+        data="data/sample-data.json"
+        styles="styles/custom-styles.css"
+        columns="Product Category">
+    </drill-down-table>
+
+    <h2>3. Data & Styles Attribute Test</h2>
+
+    <h3>Using JSON File Path + CSS File Path</h3>
+    <drill-down-table
+        data="data/sample-data.json"
+        styles="styles/custom-styles.css"
+        columns="Product Category">
+    </drill-down-table>
+
+    <h3>Using JSON String + CSS String</h3>
+    <drill-down-table
+        data='[{"name": "Direct JSON", "expanded": false, "children": [{"name": "Inline Child 1"}, {"name": "Inline Child 2"}]}]'
+        styles='table { border: 2px solid red; } th { background: red; color: white; } td { border: 1px solid pink; }'
+        columns="Name">
+    </drill-down-table>
+
+    <h2>Features</h2>
+    <ul>
+        <li>Builder pattern for fluent configuration</li>
+        <li>Web component with HTML attributes</li>
+        <li>Expandable/collapsible rows</li>
+        <li>Custom styling support (CSS files or inline styles)</li>
+        <li>Data loading from JSON files or inline strings</li>
+        <li>Event handling for row toggles</li>
+        <li>TypeScript support</li>
+    </ul>
+
+    <h2>API Reference</h2>
+    <pre><code>// Builder Pattern
+const table = DrillDownTable.builder()
+    .withData(data)
+    .withColumns(['Name'])
+    .withStyles('styles.css')
+    .onRowToggled(callback)
+    .build();
+
+// HTML Attributes
+&lt;drill-down-table
+    data="data.json"
+    styles="styles.css"
+    columns="Name"&gt;
+&lt;/drill-down-table&gt;</code></pre>
+
+    <script type="module">
+        import { DrillDownTable } from './src/index.js';
+
+        // JavaScript Builder Pattern Example
+        const sampleData = [
+            {
+                name: 'Electronics',
+                expanded: false,
+                children: [
+                    { name: 'Laptops' },
+                    { name: 'Phones' },
+                    { name: 'Tablets' }
+                ]
+            },
+            {
+                name: 'Clothing',
+                expanded: false,
+                children: [
+                    { name: 'Shirts' },
+                    { name: 'Pants' },
+                    { name: 'Shoes' }
+                ]
+            },
+            {
+                name: 'Books',
+                expanded: false,
+                children: [
+                    { name: 'Fiction' },
+                    { name: 'Non-fiction' },
+                    { name: 'Textbooks' }
+                ]
+            }
+        ];
+
+        const table = DrillDownTable.builder()
+            .withData(sampleData)
+            .withColumns(['Product Category'])
+            .withStyles('styles/custom-styles.css')
+            .onRowToggled((item) => {
+                console.log('Builder table - Row toggled:', item.name);
+            })
+            .build();
+
+        document.getElementById('js-builder-container').appendChild(table);
+
+        // Web Component Event Listeners
+        const webComponentTable = document.querySelector('drill-down-table');
+        webComponentTable.addEventListener('row-toggled', (event) => {
+            console.log('Web component - Row toggled:', event.detail.name);
+        });
+
+        // Event listeners for data & styles test tables
+        document.querySelectorAll('drill-down-table').forEach((table, index) => {
+            if (index > 0) { // Skip the first one (web component example)
+                table.addEventListener('row-toggled', (event) => {
+                    console.log(`Test table ${index} - Row toggled:`, event.detail.name);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
