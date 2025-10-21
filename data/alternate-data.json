@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Food & Beverages",
+    "expanded": false,
+    "children": [
+      { "name": "Fruits" },
+      { "name": "Vegetables" },
+      { "name": "Dairy" }
+    ]
+  },
+  {
+    "name": "Home & Garden",
+    "expanded": false,
+    "children": [
+      { "name": "Furniture" },
+      { "name": "Tools" },
+      { "name": "Plants" }
+    ]
+  }
+]
